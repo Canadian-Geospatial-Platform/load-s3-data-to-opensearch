@@ -1,0 +1,20 @@
+language: python
+python:
+  - "3.8"
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - make lint
+  - make test
+  - make coverage
+
+after_success:
+  - coveralls
+
+deploy:
+  provider: script
+  script: make deploy
+  on:
+    branch: master

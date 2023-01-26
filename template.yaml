@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyBucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: my-bucket
+  MyLambdaFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      FunctionName: load_s3_data_to_opensearch
+      Handler: load_s3_data_to_opensearch.lambda_handler
+      Role: arn:aws:iam::ACCOUNT_ID:role/lambda_s3_role
+      Code:
+        S3Bucket: my-lambda-code-bucket
+        S3Key: load_s3_data_to_opensearch.zip
+      Runtime: python3.8
+      Timeout: 900
+      Environment:
+        Variables:
+          OPENSEARCH_APP_NAME: my-app
+          OPENSEARCH_APP_KEY: my-app-key
+  MyBucketEvent:
+    Type: 'AWS::Lambda::EventSourceMapping'
+    Properties:
+      EventSourceArn: arn:aws:s3:::my-bucket
+      FunctionName:
+        Ref: MyLambdaFunction
