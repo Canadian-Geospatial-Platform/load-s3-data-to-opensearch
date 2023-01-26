@@ -7,7 +7,7 @@ s3 bucket.
 
 ## To Do
 
-- [] Create deplyment scripts
-- [] Receive and parse s3 put event
-- [] Read data from s3
-- [] Post data to opensearch
+- [ ] Create deplyment scripts
+- [ ] Receive and parse s3 put event
+- [ ] Read data from s3
+- [ ] Post data to opensearch
