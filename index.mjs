@@ -1,6 +1,6 @@
-const { Client } = require("@opensearch-project/opensearch");
-const { defaultProvider } = require("@aws-sdk/credential-provider-node");
-const createAwsOpensearchConnector = require("aws-opensearch-connector");
+const { Client } = import("@opensearch-project/opensearch");
+const { defaultProvider } = import("@aws-sdk/credential-provider-node");
+const createAwsOpensearchConnector = import("aws-opensearch-connector");
 
 var host = 'https://search-meta-search-v4-6cloxdgo2wnscy6ohegxjkywwy.ca-central-1.es.amazonaws.com' // e.g. https://my-domain.region.es.amazonaws.com
 
@@ -48,4 +48,11 @@ async function search() {
     console.log(response.body);
 }
 
-search().catch(console.log);
+export const handler = async(event) => {
+    console.log("in");
+// search().catch(console.log);
+    return {
+        statusCode: 200,
+        body: JSON.stringify("retrun")
+    }
+}

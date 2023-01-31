@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@opensearch-project/opensearch": "^2.2.0",
+    "aws-opensearch-connector": "^1.1.0",
     "aws4": "^1.11.0",
     "axios": "^1.1.3"
   }
